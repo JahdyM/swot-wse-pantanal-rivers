@@ -118,4 +118,5 @@ Figures are written to `figures/main/` when `matplotlib` is available.
 - In situ and satellite/altimetry observations are matched by nearest date within a 3-day window without reusing satellite observations.
 - Absolute validation uses GNSS-leveled stations.
 - Dynamic validation uses min-max normalized station-product time series from all stations with valid matchups.
+- Absolute aggregate Spearman values use station-level Spearman means as the primary `spearman_r`, with pooled Spearman retained as an auxiliary column.
 - The notebook writes loading and pipeline diagnostics before stopping if either absolute or dynamic matchups are empty.
