@@ -17,7 +17,7 @@ Manuscript status: under submission; not yet published.
 
 - `scripts/swot_wse_final_pipeline.ipynb`
 
-The notebook is self-contained. It does not require a companion Python module. It uses Python standard-library modules for table reading, time-series matching, outlier filtering, and metric calculation. If `matplotlib` is already available, it also exports figures; otherwise, table outputs are still generated.
+The notebook is self-contained. It does not require a companion Python module. It uses Python standard-library modules for table reading, time-series matching, outlier filtering, and core metric calculation. If `matplotlib` is already available, it also exports figures. If `scikit-learn` is available, it runs the optional product-specific Random Forest driver analysis; otherwise, the notebook still completes and records that step as unavailable.
 
 ## Input Contract
 
@@ -111,7 +111,7 @@ Open and run:
 jupyter lab scripts/swot_wse_final_pipeline.ipynb
 ```
 
-No repository-specific package installation is required. If your Jupyter environment already has `matplotlib`, figures are exported automatically. If not, the notebook still produces CSV tables.
+No repository-specific package installation is required for the core tables. If your Jupyter environment already has `matplotlib`, figures are exported automatically. If it already has `scikit-learn`, Random Forest driver tables are also generated.
 
 ## Main Outputs
 
@@ -142,7 +142,14 @@ Dynamic validation tables are written to `analysis_temporal/`:
 - `pipeline_diagnostics.json`
 - `execution_summary.json`
 
-Driver-analysis support tables are written to `analysis_drivers/`.
+Driver-analysis support tables are written to `analysis_drivers/`:
+
+- `station_level_error_predictor_matrix.csv`
+- `station_level_predictor_availability.csv`
+- `station_level_spearman_summary.csv`
+- `station_level_spearman_summary_with_qvalues.csv`
+- `rf_product_summary.csv`
+- `rf_feature_importance_by_product.csv`
 
 Figures are written to `figures/main/` when `matplotlib` is available.
 
