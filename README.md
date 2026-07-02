@@ -1,6 +1,6 @@
 # Multi-product validation of SWOT water surface elevation in the Pantanal Rivers
 
-This repository contains the reproducible processing and analysis pipeline linked to the manuscript:
+This repository contains the reproducible processing and analysis pipeline linked to a manuscript currently under submission and not yet published:
 
 **Multi-product validation of SWOT water surface elevation in the Pantanal Rivers**
 
@@ -10,6 +10,8 @@ a National Institute for Space Research (INPE), São Jose dos Campos, Brazil
 b Institute of Geosciences, University of Brasília (UnB), Brasília, Brazil  
 c School of Civil Engineering, University of Leeds, Leeds, United Kingdom  
 d Geological Survey of Brazil, Rio de Janeiro, Brazil
+
+Manuscript status: under submission; not yet published.
 
 The repository supports the main methodology used in the article: in situ data harmonization, SWOT product time-series preparation, DAHITI/HydroWeb consolidation, quality control, Hampel outlier filtering, temporal matching, absolute validation, dynamic validation, and final table/figure export.
 
