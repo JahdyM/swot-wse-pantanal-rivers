@@ -21,52 +21,54 @@ The notebook is self-contained. It does not require a companion Python module. I
 
 ## Input Contract
 
-Run the notebook from the same working directory used by the processing workflow. Edit the first configuration cell only if your folders differ.
+Organize the analysis folder into a few logical data groups. The folder and file names below are generic examples; if your local names differ, update the first configuration cell so each key points to the correct location. The important rule is that the same `station_id` must be used consistently across metadata, in situ files, SWOT product tables, and altimetry tables.
 
 ```text
-<working-directory>/
-├── analises/
-│   └── tabelas/
-│       ├── ana_metadados.csv
-│       └── correspondencia_altimetria_convencional.csv
-├── dados_processados/
-│   └── ana/
-│       ├── sem_nivelamento/{station_id}.csv
-│       └── nivelamento/{station_id}_nivelada.csv
-├── analise_final/
-│   ├── water_mask_15m.shp
-│   └── Estacao_{station_id}/
-│       ├── pixc_complete_raw.csv
-│       ├── raster_complete_raw.csv
-│       ├── node_complete_raw.csv
-│       ├── reach_complete_raw.csv
-│       └── alt_conv_{station_id}.csv
-├── analysis_absolute/
-├── analysis_temporal/
-├── analysis_drivers/
-└── figures/
-    ├── main/
-    └── supplementary/
+<analysis-root>/
+├── metadata/
+│   ├── station_metadata.csv
+│   └── altimetry_station_codes.csv        # optional, only needed before external-data download
+├── in_situ/
+│   ├── raw_or_unleveled/
+│   │   └── {station_id}.csv
+│   └── gnss_leveled/
+│       └── {station_id}_leveled.csv
+├── satellite_timeseries/
+│   └── {station_id}/
+│       ├── swot_pixc_timeseries.csv
+│       ├── swot_raster_timeseries.csv
+│       ├── swot_node_timeseries.csv
+│       ├── swot_reach_timeseries.csv
+│       └── external_altimetry_timeseries.csv
+└── results/
+    ├── absolute_validation/
+    ├── dynamic_validation/
+    ├── driver_analysis/
+    └── figures/
 ```
 
 ## Required Inputs
 
-Station metadata must contain a station-code column named `station`, `codigo`, `cod_ana`, `codigo_ana`, or `id`.
+Station metadata must contain one row per gauge/station and a station identifier column such as `station`, `station_id`, `gauge_id`, `codigo`, `cod_ana`, `codigo_ana`, or `id`. Optional but useful columns include station name, river, latitude, longitude, river width, drainage area, Pantanal subregion, and land-cover percentages.
 
 In situ CSV files must contain:
 
 - a parseable date/time column
-- a water-level column such as `wse`, `wse_ana`, `wse_egm08`, `Cota`, `cota`, `nivel`, or `stage`
+- a water-level column in meters, such as `wse`, `wse_ana`, `wse_egm08`, `Cota`, `cota`, `nivel`, or `stage`
+- consistent `station_id` naming between raw/unleveled and GNSS-leveled files
 
 SWOT product CSV files must contain:
 
 - a parseable date/time column
-- `wse_media` for PIXC/Raster or `wse` for Node/Reach
+- a WSE column in meters; PIXC/Raster usually use `wse_media` or `wse`, while Node/Reach usually use `wse` or `WSE`
+- optional quality columns, which are used by the filters when available
 
 Altimetry CSV files must contain:
 
 - a parseable date/time column
-- `wse`
+- a WSE column in meters, usually named `wse`
+
+Output folders can be empty before execution. The notebook creates CSV tables, diagnostics, and figures there.
 
 ## Execution
 
