@@ -90,6 +90,8 @@ Absolute validation tables are written to `analysis_absolute/`:
 - `metrics_by_product_orbital_phase.csv`
 - `error_by_hydrological_phase.csv`
 - `outlier_filter_audit.csv`
+- `data_load_audit.csv`
+- `pipeline_diagnostics.json`
 - `execution_summary.json`
 
 Dynamic validation tables are written to `analysis_temporal/`:
@@ -101,7 +103,11 @@ Dynamic validation tables are written to `analysis_temporal/`:
 - `metrics_dynamic_overall.csv`
 - `normalized_series_for_examples.csv`
 - `outlier_filter_audit.csv`
+- `data_load_audit.csv`
+- `pipeline_diagnostics.json`
 - `execution_summary.json`
+
+Driver-analysis support tables are written to `analysis_drivers/`.
 
 Figures are written to `figures/main/` when `matplotlib` is available.
 
@@ -112,3 +118,4 @@ Figures are written to `figures/main/` when `matplotlib` is available.
 - In situ and satellite/altimetry observations are matched by nearest date within a 3-day window without reusing satellite observations.
 - Absolute validation uses GNSS-leveled stations.
 - Dynamic validation uses min-max normalized station-product time series.
+- The notebook writes loading and pipeline diagnostics before stopping if either absolute or dynamic matchups are empty.
