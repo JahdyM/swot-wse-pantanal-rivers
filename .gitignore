@@ -5,7 +5,7 @@ __pycache__/
 .venv/
 venv/
 
-# Keep the final notebook tracked and ignore other notebooks by default.
+# Keep the repository centered on the final reproducible notebook.
 scripts/*.ipynb
 !scripts/swot_wse_final_pipeline.ipynb
 
@@ -33,5 +33,6 @@ outputs/**/*_temp/
 # Remove these lines if you want to version final CSV/PNG results.
 outputs/tables/
 outputs/figures/
-outputs/swot_raw/
-outputs/altimetry_raw/
+outputs/swot_timeseries/
+outputs/altimetry_timeseries/
+figures/
