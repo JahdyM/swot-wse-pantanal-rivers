@@ -21,26 +21,32 @@ The notebook is self-contained. It does not require a companion Python module. I
 
 ## Input Contract
 
-Edit the first configuration cell if your folders differ.
+Run the notebook from the same working directory used by the processing workflow. Edit the first configuration cell only if your folders differ.
 
 ```text
-<project-root>/
-├── data/
-│   ├── in_situ/
-│   │   ├── unleveled/{station_id}.csv
-│   │   └── gnss_leveled/{station_id}_leveled.csv
-│   ├── metadata/station_metadata.csv
-│   └── altimetry/altimetry_station_codes.csv
-├── outputs/
-│   ├── swot_timeseries/Station_{station_id}/
-│   │   ├── pixc_complete_raw.csv
-│   │   ├── raster_complete_raw.csv
-│   │   ├── node_complete_raw.csv
-│   │   └── reach_complete_raw.csv
-│   ├── altimetry_timeseries/Station_{station_id}/alt_conv_{station_id}.csv
-│   ├── tables/
-│   └── figures/
-└── scripts/swot_wse_final_pipeline.ipynb
+<working-directory>/
+├── analises/
+│   └── tabelas/
+│       ├── ana_metadados.csv
+│       └── correspondencia_altimetria_convencional.csv
+├── dados_processados/
+│   └── ana/
+│       ├── sem_nivelamento/{station_id}.csv
+│       └── nivelamento/{station_id}_nivelada.csv
+├── analise_final/
+│   ├── water_mask_15m.shp
+│   └── Estacao_{station_id}/
+│       ├── pixc_complete_raw.csv
+│       ├── raster_complete_raw.csv
+│       ├── node_complete_raw.csv
+│       ├── reach_complete_raw.csv
+│       └── alt_conv_{station_id}.csv
+├── analysis_absolute/
+├── analysis_temporal/
+├── analysis_drivers/
+└── figures/
+    ├── main/
+    └── supplementary/
 ```
 
 ## Required Inputs
@@ -74,18 +80,30 @@ No repository-specific package installation is required. If your Jupyter environ
 
 ## Main Outputs
 
-- `outputs/tables/matchups_raw.csv`
-- `outputs/tables/matchups_quality_filtered.csv`
-- `outputs/tables/matchups_outlier_filtered.csv`
-- `outputs/tables/metrics_overall.csv`
-- `outputs/tables/metrics_by_station.csv`
-- `outputs/tables/metrics_by_product_orbital_phase.csv`
-- `outputs/tables/error_by_hydrological_phase.csv`
-- `outputs/tables/metrics_dynamic_by_station.csv`
-- `outputs/tables/metrics_dynamic_overall.csv`
-- `outputs/tables/outlier_filter_audit.csv`
-- `outputs/tables/execution_summary.json`
-- `outputs/figures/*.png` when `matplotlib` is available
+Absolute validation tables are written to `analysis_absolute/`:
+
+- `matchups_raw.csv`
+- `matchups_quality_filtered.csv`
+- `matchups_outlier_filtered.csv`
+- `metrics_overall.csv`
+- `metrics_by_station.csv`
+- `metrics_by_product_orbital_phase.csv`
+- `error_by_hydrological_phase.csv`
+- `outlier_filter_audit.csv`
+- `execution_summary.json`
+
+Dynamic validation tables are written to `analysis_temporal/`:
+
+- `matchups_raw.csv`
+- `matchups_quality_filtered.csv`
+- `matchups_outlier_filtered.csv`
+- `metrics_dynamic_by_station.csv`
+- `metrics_dynamic_overall.csv`
+- `normalized_series_for_examples.csv`
+- `outlier_filter_audit.csv`
+- `execution_summary.json`
+
+Figures are written to `figures/main/` when `matplotlib` is available.
 
 ## Method Summary
 
